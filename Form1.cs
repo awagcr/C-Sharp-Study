@@ -34,8 +34,7 @@ namespace Banco
             this.contas = new List<Conta>();
             
 
-            Conta c = new Conta();
-            ContaCorrente c1 = (ContaCorrente)c;
+            Conta c1 = new ContaCorrente();
             c1.saldo = 500;
             c1.numero = ++Conta.numeroDeContas;
             c1.titular = new Cliente("José Alvaro");
@@ -65,10 +64,20 @@ namespace Banco
             this.AdicionaConta(c4);
             
             Conta c5 = new ContaDeInvestimentos();
-            c5.saldo = 3500;
             c5.numero = ++Conta.numeroDeContas;
             c5.titular = new Cliente("Alfonso Costa");
+            c5.saldo = 3500;
             this.AdicionaConta(c5);
+            /*Boxing
+            * Conversão de um tipo primário (Value Type) em um tipo de referência.
+            * ocorreria se por exemplo houvesse uma variável valorSaldo do tipo objeto:
+            */
+            object valorSaldo = c5.saldo; //tipo primário (double - c2.saldo) em tipo referência (object - valorSaldo)
+            //Já o UNBOXING é a conversão do tipo referência para o tipo primário, que deve ser feito de forma explícita:
+            double d = (double)valorSaldo;
+            MessageBox.Show("Programa iniciado. \n Resultado do unboxing: " + d);
+
+            
 
         }
 
